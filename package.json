@@ -17,13 +17,8 @@
       "default": "./dist/handlers/index.js"
     }
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
-    "build": "tsc",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm run build"
+    "build": "tsc"
   },
   "peerDependencies": {
     "next": ">=14",
@@ -35,9 +30,6 @@
     "next": "^16.0.0",
     "react": "^19.0.0",
     "typescript": "^5.7.0"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",
