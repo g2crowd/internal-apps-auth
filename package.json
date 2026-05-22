@@ -1,0 +1,46 @@
+{
+  "name": "@g2crowd/internal-apps-auth",
+  "version": "0.1.0",
+  "description": "Drop-in auth for G2 internal apps behind oauth2-proxy",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./dev-login": {
+      "types": "./dist/components/dev-login-page.d.ts",
+      "default": "./dist/components/dev-login-page.js"
+    },
+    "./handlers": {
+      "types": "./dist/handlers/index.d.ts",
+      "default": "./dist/handlers/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "next": ">=14",
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "@types/react": "^19.0.0",
+    "next": "^16.0.0",
+    "react": "^19.0.0",
+    "typescript": "^5.7.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/g2crowd/internal-apps-auth.git"
+  },
+  "license": "UNLICENSED"
+}
