@@ -1,10 +1,19 @@
-export const PROXY_EMAIL_HEADER = "x-auth-request-email";
+export const PROXY_EMAIL_HEADERS = [
+    "x-authentik-email",
+    "x-auth-request-email",
+];
+export const PROXY_EMAIL_HEADER = PROXY_EMAIL_HEADERS[0];
 export const DEV_SESSION_COOKIE = "g2_dev_session";
 function isDev() {
     return process.env.NODE_ENV !== "production";
 }
 function getEmailFromProxy(request) {
-    return request.headers.get(PROXY_EMAIL_HEADER) ?? null;
+    for (const header of PROXY_EMAIL_HEADERS) {
+        const value = request.headers.get(header);
+        if (value)
+            return value;
+    }
+    return null;
 }
 function getDevCookieEmail(request) {
     const cookieHeader = request.headers.get("cookie") ?? "";

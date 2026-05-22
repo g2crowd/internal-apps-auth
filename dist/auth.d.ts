@@ -1,4 +1,5 @@
-export declare const PROXY_EMAIL_HEADER = "x-auth-request-email";
+export declare const PROXY_EMAIL_HEADERS: readonly ["x-authentik-email", "x-auth-request-email"];
+export declare const PROXY_EMAIL_HEADER: "x-authentik-email";
 export declare const DEV_SESSION_COOKIE = "g2_dev_session";
 export interface Session {
     email: string;

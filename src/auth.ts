@@ -1,4 +1,8 @@
-export const PROXY_EMAIL_HEADER = "x-auth-request-email";
+export const PROXY_EMAIL_HEADERS = [
+  "x-authentik-email",
+  "x-auth-request-email",
+] as const;
+export const PROXY_EMAIL_HEADER = PROXY_EMAIL_HEADERS[0];
 export const DEV_SESSION_COOKIE = "g2_dev_session";
 
 export interface Session {
@@ -18,7 +22,11 @@ function isDev(): boolean {
 }
 
 function getEmailFromProxy(request: Request): string | null {
-  return request.headers.get(PROXY_EMAIL_HEADER) ?? null;
+  for (const header of PROXY_EMAIL_HEADERS) {
+    const value = request.headers.get(header);
+    if (value) return value;
+  }
+  return null;
 }
 
 function getDevCookieEmail(request: Request): string | null {

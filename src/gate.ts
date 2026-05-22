@@ -1,6 +1,6 @@
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { PROXY_EMAIL_HEADER, DEV_SESSION_COOKIE } from "./auth.js";
+import { PROXY_EMAIL_HEADERS, DEV_SESSION_COOKIE } from "./auth.js";
 
 /**
  * Server-component auth gate. Call at the top of any page that requires auth.
@@ -17,8 +17,10 @@ export async function requireAuth(devLoginPath = "/dev-login"): Promise<string> 
   }
 
   const headerStore = await headers();
-  const email = headerStore.get(PROXY_EMAIL_HEADER);
-  if (email) return email;
+  for (const h of PROXY_EMAIL_HEADERS) {
+    const email = headerStore.get(h);
+    if (email) return email;
+  }
 
   redirect("/");
 }

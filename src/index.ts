@@ -2,6 +2,7 @@ export {
   getSession,
   getApiAuth,
   PROXY_EMAIL_HEADER,
+  PROXY_EMAIL_HEADERS,
   DEV_SESSION_COOKIE,
   type Session,
   type AuthConfig,
